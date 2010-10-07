@@ -6,22 +6,20 @@ widget here with some parameters filled out.
 The demos implemented here are what is displayed in the tw2.devtools
 WidgetBrowser.
 """
-from widgets import PVPanel
+from widgets import PVPanel, pv
 from tw2.core import JSSymbol
 
 class DemoPVPanel(PVPanel):
     def prepare(self):
         super(DemoPVPanel, self).prepare()
-        self.height(150)
-        self.width(175)
-        self.add(JSSymbol(src='pv.Rule'))
-        self.data(JSSymbol(src='pv.range(0,2,.5)'))
-        self.bottom(JSSymbol(src='function(d) { return d * 80 + .5 }'))
-        self.add(JSSymbol(src='pv.Label'))
-
-        self.add(JSSymbol(src='pv.Bar'))
-        self.data([1, 1.2, 1.7, 1.5, .7, .3])
-        self.width(20)
-        self.height(JSSymbol(src='function(d) { return d * 80 }'))
-        self.bottom(0)
-        self.left(JSSymbol(src='function(d) { return this.index * 25 + 25 }'))
+        self.height(150).width(175) \
+            .add(pv.Rule) \
+            .data(map(lambda x : x/2.0, range(4))) \
+            .bottom(JSSymbol(src='function(d) { return d * 80 + .5 }')) \
+            .add(pv.Label) \
+            .add(pv.Bar) \
+            .data([1, 1.2, 1.7, 1.5, .7, .3]) \
+            .width(20) \
+            .height(JSSymbol(src='function(d) { return d * 80 }')) \
+            .bottom(0) \
+            .left(JSSymbol(src='function(d) { return this.index * 25 + 25 }'))

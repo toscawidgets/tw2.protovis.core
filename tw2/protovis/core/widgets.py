@@ -21,7 +21,17 @@ class PVPanel(twc.Widget):
             # BUG on multiple page reloads, this still gets duplicates
             if f not in self._pv_prop_funcs:
                 self._pv_prop_funcs.append(f)
+            return self
         return handlerFunction
 
     def __getattr__(self, name):
         return self.handlerFunctionClosure(name)
+
+# A convenience class to make writing visualizations easier
+class PVObjects(object):
+    Label = twc.JSSymbol(src='pv.Label')
+    Bar = twc.JSSymbol(src='pv.Bar')
+    Rule = twc.JSSymbol(src='pv.Rule')
+
+pv = PVObjects()
+
