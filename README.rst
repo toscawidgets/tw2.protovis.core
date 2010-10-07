@@ -1,4 +1,4 @@
-tw2.protovis
+tw2.protovis.core
 =======
 
 :Author: Ralph Bean <ralph.bean@gmail.com>
@@ -8,20 +8,20 @@ tw2.protovis
 .. _toscawidgets2 (tw2): http://toscawidgets.org/documentation/tw2.core/
 .. _protovis: http://vis.stanford.edu/protovis/
 
-tw2.protovis is a `toscawidgets2 (tw2)`_ wrapper for `protovis`_.
+tw2.protovis.core is a `toscawidgets2 (tw2)`_ wrapper for `protovis`_.
 
 Live Demo
 ---------
 
-Peep the `live demonstration <http://craftsman.rc.rit.edu/module?module=tw2.protovis>`_.
+Peep the `live demonstration <http://craftsman.rc.rit.edu/module?module=tw2.protovis.core>`_.
 
 Links
 -----
 
-You can `get the source from github <http://github.com/ralphbean/tw2.protovis>`_,
-check out `the PyPI page <http://pypi.python.org/pypi/tw2.protovis>`_, ant
+You can `get the source from github <http://github.com/ralphbean/tw2.protovis.core>`_,
+check out `the PyPI page <http://pypi.python.org/pypi/tw2.protovis.core>`_, ant
 d
-report or look into `bugs <http://github.com/ralphbean/tw2.protovis/issues/>`_.
+report or look into `bugs <http://github.com/ralphbean/tw2.protovis.core/issues/>`_.
 
 Description
 -----------
@@ -34,21 +34,21 @@ flexible, reliable, documented, performant, and as simple as possible.
 
 `protovis`_ composes custom views of data with simple marks such as bars and dots. Unlike low-level graphics libraries that quickly become tedious for visualization, Protovis defines marks through dynamic properties that encode data, allowing inheritance, scales and layouts to simplify construction.
 
-This module, tw2.protovis, provides `toscawidgets2 (tw2)`_ widgets that render `protovis`_ data visualizations.
+This module, tw2.protovis.core, provides `toscawidgets2 (tw2)`_ widgets that render `protovis`_ data visualizations.
 
 
-Sampling tw2.protovis in the WidgetBrowser
+Sampling tw2.protovis.core in the WidgetBrowser
 -------------------------------------
 
-The best way to scope out ``tw2.protovis`` is to load its widgets in the 
+The best way to scope out ``tw2.protovis.core`` is to load its widgets in the 
 ``tw2.devtools`` WidgetBrowser.  To see the source code that configures them,
-check out ``tw2.protovis/samples.py``
+check out ``tw2.protovis.core/samples.py``
 
 To give it a try you'll need git, mercurial, python, and virtualenv.  Run:
 
-    ``git clone git://github.com/ralphbean/tw2.protovis.git``
+    ``git clone git://github.com/ralphbean/tw2.protovis.core.git``
 
-    ``cd tw2.protovis``
+    ``cd tw2.protovis.core``
 
 The following script will set up all the necessary tw2 dependencies in a
 python virtualenv:

@@ -6,7 +6,7 @@ long_description = long_description.split('split here', 1)[1]
 f.close()
 
 setup(
-    name='tw2.protovis',
+    name='tw2.protovis.core',
     version='0.1.a0',
     description='toscawidgets2 wrapper for the stanford protovis toolkit',
     long_description=long_description,
@@ -25,7 +25,7 @@ setup(
     entry_points="""
         [tw2.widgets]
         # Register your widgets so they can be listed in the WidgetBrowser
-        tw2.protovis = tw2.protovis
+        tw2.protovis.core = tw2.protovis.core
     """,
     keywords = [
         'toscawidgets.widgets',
