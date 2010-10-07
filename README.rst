@@ -32,9 +32,7 @@ and easier. Widgets are re-usable web components that can include a template,
 server-side code and JavaScripts/CSS resources. The library aims to be:
 flexible, reliable, documented, performant, and as simple as possible.
 
-The JavaScript InfoVis Toolkit (`protovis`_) is a javascript library that
-provides web standard based tools to create interactive data visualizations
-for the Web.  It is pretty, interactive, and fast.
+`protovis`_ composes custom views of data with simple marks such as bars and dots. Unlike low-level graphics libraries that quickly become tedious for visualization, Protovis defines marks through dynamic properties that encode data, allowing inheritance, scales and layouts to simplify construction.
 
 This module, tw2.protovis, provides `toscawidgets2 (tw2)`_ widgets that render `protovis`_ data visualizations.
 
