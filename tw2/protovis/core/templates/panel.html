@@ -2,7 +2,10 @@
 <script type="text/javascript">
 var vis = new pv.Panel()
     .width($w.width)
-    .height($w.height);
+    .height($w.height)
+<py:for each="f in w._pv_prop_funcs">
+${f.src}
+</py:for>
 
 vis.add(pv.Rule)
     .data(pv.range(0, 2, .5))
