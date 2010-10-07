@@ -1,23 +1,9 @@
 <div xmlns:py="http://genshi.edgewall.org/" py:attrs="w.attrs">
 <script type="text/javascript">
 var vis = new pv.Panel()
-    .width($w.width)
-    .height($w.height)
 <py:for each="f in w._pv_prop_funcs">
 ${f.src}
 </py:for>
-
-vis.add(pv.Rule)
-    .data(pv.range(0, 2, .5))
-    .bottom(function(d) { return d * 80 + .5} )
-    .add(pv.Label);
-
-var bar = vis.add(pv.Bar);
-bar.data([1, 1.2, 1.7, 1.5, .7, .3])
-    .width(20)
-    .bottom(0)
-    .height(function(d) {return d * 80})
-    .left(function() {return this.index * 25 + 25});
 
 vis.render();
 

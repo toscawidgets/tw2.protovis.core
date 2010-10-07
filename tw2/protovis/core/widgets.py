@@ -10,8 +10,6 @@ class PVPanel(twc.Widget):
     template = "genshi:tw2.protovis.core.templates.panel"
     resources = [res.pv_js]
    
-    width = twc.Param('(string) widget width', default='150', attribute=True)
-    height = twc.Param('(string) widget height', default='150', attribute=True)
     _pv_prop_funcs = twc.Variable('(list) of JSSymbols', default=[])
 
     def handlerFunctionClosure(self, name):
@@ -27,9 +25,3 @@ class PVPanel(twc.Widget):
 
     def __getattr__(self, name):
         return self.handlerFunctionClosure(name)
-
-    def prepare(self):
-        super(PVPanel, self).prepare()
-        # -- this is just a test
-        self.widthx(50, 'foo', twc.JSSymbol(src='function(){return "f"}'))
-
