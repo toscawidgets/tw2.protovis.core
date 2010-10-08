@@ -43,6 +43,13 @@ class PVWidget(PVMark):
     template = "mako:tw2.protovis.core.templates.widget"
     resources = [res.pv_js]
 
+    p_width = twc.Param('The width of the panel, in pixel.', default=400)
+    p_height = twc.Param('The height of the panel, in pixels.', default=200)
+    p_bottom = twc.Param('The bottom margin, in pixels.', default=20)
+    p_top = twc.Param('The top margin, in pixels.', default=5)
+    p_left = twc.Param('The left margin, in pixels.', default=20)
+    p_right = twc.Param('The right margin, in pixels.', default=10)
+
     init_js = twc.Param('JSSymbol', default=twc.JSSymbol(src=''))
     _adds = twc.Variable(default=[])
     pvcls = pv.Panel
