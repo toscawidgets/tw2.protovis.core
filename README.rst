@@ -1,5 +1,5 @@
 tw2.protovis.core
-=======
+=================
 
 :Author: Ralph Bean <ralph.bean@gmail.com>
 
@@ -19,8 +19,7 @@ Links
 -----
 
 You can `get the source from github <http://github.com/ralphbean/tw2.protovis.core>`_,
-check out `the PyPI page <http://pypi.python.org/pypi/tw2.protovis.core>`_, ant
-d
+check out `the PyPI page <http://pypi.python.org/pypi/tw2.protovis.core>`_, and
 report or look into `bugs <http://github.com/ralphbean/tw2.protovis.core/issues/>`_.
 
 Description
