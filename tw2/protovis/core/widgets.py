@@ -6,11 +6,11 @@ import tw2.core as twc
 from tw2.core.resources import encoder
 from tw2.protovis.core import resources as res
 
-class PVPanel(twc.Widget):
-    template = "genshi:tw2.protovis.core.templates.panel"
+
+class PVMark(twc.Widget):
+    template = "mako:tw2.protovis.core.templates.mark"
     resources = [res.pv_js]
-  
-    init_js = twc.Param('JSSymbol', default=twc.JSSymbol(src=''))
+
     _initialized = twc.Variable('(bool)', default=False)
     _pv_prop_funcs = twc.Variable('(list) of JSSymbols', default=[])
 
@@ -25,14 +25,29 @@ class PVPanel(twc.Widget):
                 raise ValueError, "panel not initialized.  call .init() first"
             if kwargs:
                 raise ValueError, "keyword arguments are disallowed"
+
             f = twc.JSSymbol(src=".%s(%s)" % (name, encoder.encode(args)[1:-1]))
             if f not in self._pv_prop_funcs:
                 self._pv_prop_funcs.append(f)
-            return self
+            
+            # Add is a special method that returns a new PVMark
+            if name == 'add':
+                return PVMark()
+            else:
+                return self
         return handlerFunction
 
     def __getattr__(self, name):
         return self.handlerFunctionClosure(name)
+
+class PVPanel(PVMark):
+    pass
+
+class PVWidget(PVPanel):
+    template = "mako:tw2.protovis.core.templates.widget"
+    resources = [res.pv_js]
+
+    init_js = twc.Param('JSSymbol', default=twc.JSSymbol(src=''))
 
 # A convenience class to make writing visualizations easier
 class PVObjects(object):

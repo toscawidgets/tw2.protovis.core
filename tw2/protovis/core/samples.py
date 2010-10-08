@@ -6,12 +6,12 @@ widget here with some parameters filled out.
 The demos implemented here are what is displayed in the tw2.devtools
 WidgetBrowser.
 """
-from widgets import PVPanel, pv
+from widgets import PVWidget, pv
 from tw2.core import JSSymbol
 
-class DemoPVPanel(PVPanel):
+class DemoPVWidget(PVWidget):
     def __init__(self, *args, **kwargs):
-        super(DemoPVPanel, self).__init__(*args, **kwargs)
+        super(DemoPVWidget, self).__init__(*args, **kwargs)
         self.init().height(150).width(175) \
             .add(pv.Rule) \
             .data(map(lambda x : x/2.0, range(4))) \
