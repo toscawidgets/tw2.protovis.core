@@ -34,6 +34,14 @@ class PVMark(twc.Widget):
                 self._pv_prop_funcs.append(f)
             
             return self
+
+        # Special exceptions.  Layer isn't a protovis method.  Just a property
+        if name == 'layer':
+            f = twc.JSSymbol(src=".%s" % name)
+            if f not in self._pv_prop_funcs:
+                self._pv_prop_funcs.append(f)
+            return self
+
         return handlerFunction
 
     def __getattr__(self, name):
