@@ -15,7 +15,6 @@ setup(
     url='',
     install_requires=[
         "tw2.core",
-        "genshi",
         "mako",
         ],
     packages=find_packages(exclude=['ez_setup']),

@@ -17,7 +17,8 @@ class DemoPVWidget(PVWidget):
             .data(map(lambda x : x/2.0, range(4))) \
             .bottom(JSSymbol(src='function(d) { return d * 80 + .5 }')) \
             .add(pv.Label) \
-            .add(pv.Bar) \
+        
+        self.add(pv.Bar) \
             .data([1, 1.2, 1.7, 1.5, .7, .3]) \
             .width(20) \
             .height(JSSymbol(src='function(d) { return d * 80 }')) \
