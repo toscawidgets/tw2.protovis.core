@@ -10,15 +10,21 @@ class PVPanel(twc.Widget):
     template = "genshi:tw2.protovis.core.templates.panel"
     resources = [res.pv_js]
    
+    _initialized = twc.Variable('(bool)', default=False)
     _pv_prop_funcs = twc.Variable('(list) of JSSymbols', default=[])
+
+    def init(self):
+        self._pv_prop_funcs = []
+        self._initialized = True
+        return self
 
     def handlerFunctionClosure(self, name):
         def handlerFunction(*args, **kwargs):
+            if not self._initialized:
+                raise ValueError, "panel not initialized.  call .init() first"
             if kwargs:
                 raise ValueError, "keyword arguments are disallowed"
             f = twc.JSSymbol(src=".%s(%s)" % (name, encoder.encode(args)[1:-1]))
-            # TODO -- need more robust check here.
-            # BUG on multiple page reloads, this still gets duplicates
             if f not in self._pv_prop_funcs:
                 self._pv_prop_funcs.append(f)
             return self

@@ -10,9 +10,9 @@ from widgets import PVPanel, pv
 from tw2.core import JSSymbol
 
 class DemoPVPanel(PVPanel):
-    def prepare(self):
-        super(DemoPVPanel, self).prepare()
-        self.height(150).width(175) \
+    def __init__(self, *args, **kwargs):
+        super(DemoPVPanel, self).__init__(*args, **kwargs)
+        self.init().height(150).width(175) \
             .add(pv.Rule) \
             .data(map(lambda x : x/2.0, range(4))) \
             .bottom(JSSymbol(src='function(d) { return d * 80 + .5 }')) \
