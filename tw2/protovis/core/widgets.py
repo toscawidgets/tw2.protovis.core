@@ -9,7 +9,8 @@ from tw2.protovis.core import resources as res
 class PVPanel(twc.Widget):
     template = "genshi:tw2.protovis.core.templates.panel"
     resources = [res.pv_js]
-   
+  
+    init_js = twc.Param('JSSymbol', default=twc.JSSymbol(src=''))
     _initialized = twc.Variable('(bool)', default=False)
     _pv_prop_funcs = twc.Variable('(list) of JSSymbols', default=[])
 
