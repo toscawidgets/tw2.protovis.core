@@ -22,6 +22,12 @@ class PVMark(twc.Widget):
         self._initialized = True
         return self
 
+    def setupRootPanel(self):
+        """ setup root panel... typically done at the start of .prepare """
+        self.init().width(self.p_width).height(self.p_height) \
+                   .bottom(self.p_bottom).top(self.p_top) \
+                   .left(self.p_left).right(self.p_right)
+
     def handlerFunctionClosure(self, name):
         def handlerFunction(*args, **kwargs):
             if not self._initialized:
