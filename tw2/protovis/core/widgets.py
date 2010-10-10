@@ -49,7 +49,8 @@ class PVMark(twc.Widget):
     
     def parent(self, *args, **kwargs):
         """ Overridden from twc.Widget """
-        return self.__getattr__('parent')(*args, **kwargs)
+        print "warning -- overridden from tw2 for protovis-specific purposes"
+        return self.handlerFunctionClosure('parent')(*args, **kwargs)
 
 class PVWidget(PVMark):
     template = "mako:tw2.protovis.core.templates.widget"
