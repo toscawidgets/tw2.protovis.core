@@ -36,7 +36,9 @@ class PVMark(twc.Widget):
             return self
 
         # Special exceptions.  These aren't protovis methods.  Just properties
-        if name in ['layer', 'parent']:
+        if name in ['layer', '_parent']:
+            if name in ['_parent']:
+                name = name[1:]
             f = twc.JSSymbol(src=".%s" % name)
             if f not in self._pv_prop_funcs:
                 self._pv_prop_funcs.append(f)
@@ -48,9 +50,9 @@ class PVMark(twc.Widget):
         return self.handlerFunctionClosure(name)
     
     def parent(self, *args, **kwargs):
-        """ Overridden from twc.Widget """
-        print "warning -- overridden from tw2 for protovis-specific purposes"
-        return self.handlerFunctionClosure('parent')(*args, **kwargs)
+        """ Just toss out a warning since we can't ignore tw2's needs """
+        print "warning -- 'parent' from protovis must be used as _parent"
+        return super(PVMark, self).parent(*args, **kwargs)
 
 class PVWidget(PVMark):
     template = "mako:tw2.protovis.core.templates.widget"
