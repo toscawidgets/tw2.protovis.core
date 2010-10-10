@@ -48,11 +48,6 @@ class PVMark(twc.Widget):
 
     def __getattr__(self, name):
         return self.handlerFunctionClosure(name)
-    
-    def parent(self, *args, **kwargs):
-        """ Just toss out a warning since we can't ignore tw2's needs """
-        print "warning -- 'parent' from protovis must be used as _parent"
-        return super(PVMark, self).parent(*args, **kwargs)
 
 class PVWidget(PVMark):
     template = "mako:tw2.protovis.core.templates.widget"
