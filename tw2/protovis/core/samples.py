@@ -1,4 +1,4 @@
-""" Samples of how to use tw2.jit
+""" Samples of how to use tw2.protovis.core
 
 Each class exposed in the widgets submodule has an accompanying Demo<class>
 widget here with some parameters filled out.

@@ -42,7 +42,7 @@ class PVMark(twc.Widget):
             return self
 
         # Special exceptions.  These aren't protovis methods.  Just properties
-        if name in ['layer', 'node', '_parent']:
+        if name in ['label', 'layer', 'link', 'node', '_parent']:
             if name in ['_parent']:
                 name = name[1:]
             f = twc.JSSymbol(src=".%s" % name)
