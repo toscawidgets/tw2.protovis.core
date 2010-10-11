@@ -61,9 +61,6 @@ class PVMark(twc.Widget):
             
             return self
 
-        return handlerFunction
-
-    def __getattr__(self, name):
         # Special exceptions.  These aren't protovis methods.  Just properties
         if name in ['label', 'layer', 'link', 'node', '_parent']:
             if name in ['_parent']:
@@ -75,6 +72,9 @@ class PVMark(twc.Widget):
                     return self.mark.handlerFunctionClosure(
                         '%s.%s' % (self.prepend, name))
             return NameMungingWrapper(mark=self, prepend=name).req().init()
+        return handlerFunction
+
+    def __getattr__(self, name):
         return self.handlerFunctionClosure(name)
 
 class PVWidget(PVMark):
