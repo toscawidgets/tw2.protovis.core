@@ -65,13 +65,13 @@ class PVMark(twc.Widget):
         if name in ['label', 'layer', 'link', 'node', '_parent']:
             if name in ['_parent']:
                 name = name[1:]
-            class NameMungingWrapper(PVMark):
+            class NameExtensionWrapper(PVMark):
                 mark=twc.Variable()
                 prepend=twc.Variable()
                 def __getattr__(self, name):
                     return self.mark.handlerFunctionClosure(
                         '%s.%s' % (self.prepend, name))
-            return NameMungingWrapper(mark=self, prepend=name).req().init()
+            return NameExtensionWrapper(mark=self, prepend=name).req().init()
         return handlerFunction
 
     def __getattr__(self, name):
