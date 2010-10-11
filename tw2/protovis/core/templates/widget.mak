@@ -8,7 +8,7 @@ var vis = new pv.Panel()
 % endfor
 
 % for a in w._adds:
-var ${a.js_id} = ${a.display()}
+${a.display()}
 
 % endfor
 vis.render();

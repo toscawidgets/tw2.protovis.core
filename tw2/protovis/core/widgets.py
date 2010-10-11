@@ -34,7 +34,18 @@ class PVMark(twc.Widget):
                    .bottom(self.p_bottom).top(self.p_top) \
                    .left(self.p_left).right(self.p_right)
 
-    def handlerFunctionClosure(self, name):
+    def hFuncClosure(self, name):
+        class NameExtensionWrapper(PVMark):
+            mrk, pre = twc.Variable(), twc.Variable()
+            def __getattr__(self, name):
+                return self.mrk.hFuncClosure('%s.%s' % (self.pre, name))
+
+        # Special exceptions.  These aren't protovis methods.  Just properties
+        if name in ['label', 'layer', 'link', 'node', '_parent']:
+            if name in ['_parent']:
+                name = name[1:]
+            return NameExtensionWrapper(mrk=self, pre=name).req().init()
+
         def handlerFunction(*args, **kwargs):
             if not self._initialized:
                 raise ValueError, "panel not initialized.  call .init() first"
@@ -42,9 +53,9 @@ class PVMark(twc.Widget):
                 raise ValueError, "keyword arguments are disallowed"
 
             if name.endswith('add'):
-                js_id = "%s__%s" % (
-                    args[0].src.replace('.','_'),
-                    str(uuid.uuid4()).replace('-','_')
+                js_id = "%s_%s" % (
+                    args[0].src.replace('.',''),
+                    str(uuid.uuid4()).replace('-','')
                 )
                 m = PVMark(
                     pvcls=args[0],
@@ -54,28 +65,22 @@ class PVMark(twc.Widget):
                 ).req().init()
                 self._adds.append(m)
                 return m
+
+            src=".%s(%s)" % (name, encoder.encode(args)[1:-1])
+
+            if name == 'anchor':
+                return NameExtensionWrapper(mrk=self, pre=src[1:]).req().init()
                
-            f = twc.JSSymbol(src=".%s(%s)" % (name, encoder.encode(args)[1:-1]))
+            f = twc.JSSymbol(src=src)
             if f not in self._pv_prop_funcs:
                 self._pv_prop_funcs.append(f)
             
             return self
 
-        # Special exceptions.  These aren't protovis methods.  Just properties
-        if name in ['label', 'layer', 'link', 'node', '_parent']:
-            if name in ['_parent']:
-                name = name[1:]
-            class NameExtensionWrapper(PVMark):
-                mark=twc.Variable()
-                prepend=twc.Variable()
-                def __getattr__(self, name):
-                    return self.mark.handlerFunctionClosure(
-                        '%s.%s' % (self.prepend, name))
-            return NameExtensionWrapper(mark=self, prepend=name).req().init()
         return handlerFunction
 
     def __getattr__(self, name):
-        return self.handlerFunctionClosure(name)
+        return self.hFuncClosure(name)
 
 class PVWidget(PVMark):
     template = "mako:tw2.protovis.core.templates.widget"
