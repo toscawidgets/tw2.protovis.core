@@ -68,7 +68,7 @@ class PVMark(twc.Widget):
 
             src=".%s(%s)" % (name, encoder.encode(args)[1:-1])
 
-            if name == 'anchor':
+            if name.endswith('anchor'):
                 return NameExtensionWrapper(mrk=self, pre=src[1:]).req().init()
                
             f = twc.JSSymbol(src=src)
