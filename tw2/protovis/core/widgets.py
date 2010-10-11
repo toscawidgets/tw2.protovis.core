@@ -20,6 +20,7 @@ class PVMark(twc.Widget):
     pvcls = twc.Param()
     parent_js_id = twc.Variable(default=None)
     js_id = twc.Variable(default=None)
+    add_method = twc.Variable(default=None)
 
     def init(self):
         self._pv_prop_funcs = []
@@ -40,7 +41,7 @@ class PVMark(twc.Widget):
             if kwargs:
                 raise ValueError, "keyword arguments are disallowed"
 
-            if name == 'add':
+            if name.endswith('add'):
                 js_id = "%s__%s" % (
                     args[0].src.replace('.','_'),
                     str(uuid.uuid4()).replace('-','_')
@@ -49,6 +50,7 @@ class PVMark(twc.Widget):
                     pvcls=args[0],
                     js_id=js_id,
                     parent_js_id=self.js_id,
+                    add_method=name,
                 ).req().init()
                 self._adds.append(m)
                 return m
@@ -63,11 +65,13 @@ class PVMark(twc.Widget):
         if name in ['label', 'layer', 'link', 'node', '_parent']:
             if name in ['_parent']:
                 name = name[1:]
-            f = twc.JSSymbol(src=".%s" % name)
-            if f not in self._pv_prop_funcs:
-                self._pv_prop_funcs.append(f)
-            return self
-
+            class NameMungingWrapper(PVMark):
+                mark=twc.Variable()
+                prepend=twc.Variable()
+                def __getattr__(self, name):
+                    return self.mark.handlerFunctionClosure(
+                        '%s.%s' % (self.prepend, name))
+            return NameMungingWrapper(mark=self, prepend=name).req().init()
         return handlerFunction
 
     def __getattr__(self, name):
@@ -88,3 +92,4 @@ class PVWidget(PVMark):
     pvcls = pv.Panel
     parent_js_id = None
     js_id = 'vis'
+    add_method = 'add'
