@@ -18,9 +18,9 @@ Peep the `live demonstration <http://tw2-demos.threebean.org/module?module=tw2.p
 Links
 -----
 
-You can `get the source from github <http://github.com/ralphbean/tw2.protovis.core>`_,
+You can `get the source from github <http://github.com/toscawidgets/tw2.protovis.core>`_,
 check out `the PyPI page <http://pypi.python.org/pypi/tw2.protovis.core>`_, and
-report or look into `bugs <http://github.com/ralphbean/tw2.protovis.core/issues/>`_.
+report or look into `bugs <http://github.com/toscawidgets/tw2.protovis.core/issues/>`_.
 
 Description
 -----------
@@ -34,31 +34,3 @@ flexible, reliable, documented, performant, and as simple as possible.
 `protovis`_ composes custom views of data with simple marks such as bars and dots. Unlike low-level graphics libraries that quickly become tedious for visualization, Protovis defines marks through dynamic properties that encode data, allowing inheritance, scales and layouts to simplify construction.
 
 This module, tw2.protovis.core, provides `toscawidgets2 (tw2)`_ widgets that render `protovis`_ data visualizations.
-
-
-Sampling tw2.protovis.core in the WidgetBrowser
--------------------------------------
-
-The best way to scope out ``tw2.protovis.core`` is to load its widgets in the 
-``tw2.devtools`` WidgetBrowser.  To see the source code that configures them,
-check out ``tw2.protovis.core/samples.py``
-
-To give it a try you'll need git, mercurial, python, and virtualenv.  Run:
-
-    ``git clone git://github.com/ralphbean/tw2.protovis.core.git``
-
-    ``cd tw2.protovis.core``
-
-The following script will set up all the necessary tw2 dependencies in a
-python virtualenv:
-
-    ``./develop-tw2-destroy-and-setup.sh``
-
-The following will enter the virtualenv and start up ``paster tw2.browser``:
-
-    ``./develop-tw2-start.sh``
-
-...and browse to http://localhost:8000/ to check it out.
-
-
-
