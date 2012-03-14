@@ -7,14 +7,14 @@ f.close()
 
 setup(
     name='tw2.protovis.core',
-    version='0.1.a6',
+    version='0.1.a7',
     description='toscawidgets2 wrapper for the stanford protovis toolkit',
     long_description=long_description,
     author='Ralph Bean',
     author_email='rbean@redhat.com',
     url='http://github.com/toscawidgets/tw2.protovis.core',
     install_requires=[
-        "tw2.core",
+        "tw2.core==2.0b11",
         "mako",
         ],
     packages=find_packages(exclude=['ez_setup']),
