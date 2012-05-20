@@ -14,7 +14,7 @@ setup(
     author_email='rbean@redhat.com',
     url='http://github.com/toscawidgets/tw2.protovis.core',
     install_requires=[
-        "tw2.core==2.0b11",
+        "tw2.core>=2.0.6",
         "mako",
         ],
     packages=find_packages(exclude=['ez_setup']),
