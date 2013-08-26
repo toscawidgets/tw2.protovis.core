@@ -1,10 +1,10 @@
-var ${w.js_id};
-${w.js_id} = ${w.parent_js_id}.${w.add_method}(${w.pvcls.src})
+var ${w.js_id|n};
+${w.js_id|n} = ${w.parent_js_id|n}.${w.add_method|n}(${w.pvcls.src|n})
 % for f in w._pv_prop_funcs:
-	${f.src}
+	${f.src|n}
 % endfor
 
 % for a in w._adds:
-${a.display()}
+${a.display()|n}
 
 % endfor
