@@ -11,6 +11,7 @@ from tw2.core import JSSymbol
 
 import random
 
+
 class js(JSSymbol):
     def __init__(self, src):
         super(js, self).__init__(src=src)
@@ -63,11 +64,12 @@ class DemoPVWidget(PVWidget):
         self.add(pv.Rule) \
             .data(js('x.ticks(5)')) \
             .left(js('x')) \
-            .strokeStyle(js('function(d) d ? "rgba(255,255,255,.3)" : "#000"'))\
+            .strokeStyle(
+                js('function(d) d ? "rgba(255,255,255,.3)" : "#000"')
+            )\
             .add(pv.Rule) \
             .bottom(0) \
             .height(5) \
             .strokeStyle("#000") \
           .anchor("bottom").add(pv.Label) \
             .text(js('x.tickFormat'))
-
